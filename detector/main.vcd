@@ -1,0 +1,526 @@
+$date
+	Thu Nov 17 11:20:24 2022
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module main $end
+$var wire 1 ! y $end
+$var reg 1 " a $end
+$var reg 1 # b $end
+$var reg 1 $ clk $end
+$var reg 1 % rst $end
+$scope module uuf $end
+$var wire 1 " a $end
+$var wire 1 $ clk $end
+$var wire 1 % rst $end
+$var wire 1 ! y $end
+$var wire 2 & s_ [1:0] $end
+$var wire 2 ' s [1:0] $end
+$scope module f0 $end
+$var wire 1 $ clk $end
+$var wire 1 ( d $end
+$var wire 1 ) data $end
+$var wire 1 * neq_clk $end
+$var wire 1 % reset $end
+$var wire 1 + q0 $end
+$var wire 1 , q $end
+$var wire 1 - neq_q0 $end
+$var wire 1 . neq_q $end
+$scope module d0 $end
+$var wire 1 ) d $end
+$var wire 1 * e $end
+$var wire 1 / r $end
+$var wire 1 0 s $end
+$var wire 1 + q $end
+$var wire 1 - neq_q $end
+$scope module l0 $end
+$var wire 1 - neq_q $end
+$var wire 1 + q $end
+$var wire 1 / r $end
+$var wire 1 0 s $end
+$upscope $end
+$upscope $end
+$scope module d1 $end
+$var wire 1 + d $end
+$var wire 1 $ e $end
+$var wire 1 1 r $end
+$var wire 1 2 s $end
+$var wire 1 , q $end
+$var wire 1 . neq_q $end
+$scope module l0 $end
+$var wire 1 . neq_q $end
+$var wire 1 , q $end
+$var wire 1 1 r $end
+$var wire 1 2 s $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module f1 $end
+$var wire 1 $ clk $end
+$var wire 1 3 d $end
+$var wire 1 4 data $end
+$var wire 1 5 neq_clk $end
+$var wire 1 % reset $end
+$var wire 1 6 q0 $end
+$var wire 1 7 q $end
+$var wire 1 8 neq_q0 $end
+$var wire 1 9 neq_q $end
+$scope module d0 $end
+$var wire 1 4 d $end
+$var wire 1 5 e $end
+$var wire 1 : r $end
+$var wire 1 ; s $end
+$var wire 1 6 q $end
+$var wire 1 8 neq_q $end
+$scope module l0 $end
+$var wire 1 8 neq_q $end
+$var wire 1 6 q $end
+$var wire 1 : r $end
+$var wire 1 ; s $end
+$upscope $end
+$upscope $end
+$scope module d1 $end
+$var wire 1 6 d $end
+$var wire 1 $ e $end
+$var wire 1 < r $end
+$var wire 1 = s $end
+$var wire 1 7 q $end
+$var wire 1 9 neq_q $end
+$scope module l0 $end
+$var wire 1 9 neq_q $end
+$var wire 1 7 q $end
+$var wire 1 < r $end
+$var wire 1 = s $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+0=
+0<
+x;
+x:
+x9
+x8
+x7
+x6
+15
+x4
+x3
+02
+01
+00
+1/
+x.
+1-
+x,
+0+
+1*
+0)
+0(
+bx '
+bx0 &
+x%
+0$
+x#
+0"
+0!
+$end
+#5
+03
+b0 &
+1.
+bx0 '
+0,
+04
+0/
+0:
+0;
+0*
+11
+05
+x<
+x=
+1%
+1$
+#10
+18
+06
+1/
+1:
+1*
+01
+15
+0<
+0=
+0$
+#15
+19
+b0 '
+07
+0/
+0:
+0*
+11
+05
+1<
+1$
+#20
+1/
+1:
+1*
+01
+15
+0<
+0$
+#25
+0/
+0:
+0*
+11
+05
+1<
+1$
+#30
+1/
+1:
+1*
+01
+15
+0<
+0$
+#35
+0/
+0:
+0*
+11
+05
+1<
+1$
+#40
+1/
+1:
+1*
+01
+15
+0<
+0$
+#45
+1#
+1(
+b1 &
+0/
+0:
+0*
+11
+05
+1<
+1"
+1$
+#50
+1/
+1:
+1*
+01
+15
+0<
+0$
+#55
+1)
+0/
+0:
+0*
+11
+05
+1<
+0%
+1$
+#60
+1+
+0-
+10
+1:
+1*
+01
+15
+0<
+0$
+#65
+b1 '
+1,
+0.
+00
+0:
+0*
+12
+05
+1<
+1$
+#70
+10
+1:
+1*
+02
+15
+0<
+0$
+#75
+00
+0:
+0*
+12
+05
+1<
+1$
+#80
+10
+1:
+1*
+02
+15
+0<
+0$
+#85
+14
+0)
+13
+0(
+b10 &
+00
+0:
+0*
+12
+05
+1<
+0"
+1$
+#90
+1-
+16
+0+
+08
+1/
+1;
+1*
+02
+15
+0<
+0$
+#95
+14
+1.
+17
+1)
+13
+1(
+b10 '
+0,
+09
+b11 &
+0/
+0;
+0*
+11
+05
+1=
+1"
+1$
+#100
+1+
+0-
+10
+1;
+1*
+01
+15
+0=
+0$
+#105
+04
+03
+0)
+0(
+b0 &
+1!
+b11 '
+1,
+0.
+00
+0;
+0*
+12
+05
+1=
+1$
+#110
+1-
+18
+0+
+06
+1/
+1:
+1*
+02
+15
+0=
+0$
+#115
+1)
+1(
+b1 &
+0!
+1.
+19
+0,
+b0 '
+07
+0/
+0:
+0*
+11
+05
+1<
+1$
+#120
+1+
+0-
+10
+1:
+1*
+01
+15
+0<
+0$
+#125
+b1 '
+1,
+0.
+00
+0:
+0*
+12
+05
+1<
+1$
+#130
+10
+1:
+1*
+02
+15
+0<
+0$
+#135
+00
+0:
+0*
+12
+05
+1<
+1$
+#140
+10
+1:
+1*
+02
+15
+0<
+0$
+#145
+00
+0:
+0*
+12
+05
+1<
+1$
+#150
+10
+1:
+1*
+02
+15
+0<
+0$
+#155
+00
+0:
+0*
+12
+05
+1<
+1$
+#160
+10
+1:
+1*
+02
+15
+0<
+0$
+#165
+00
+0:
+0*
+12
+05
+1<
+1$
+#170
+10
+1:
+1*
+02
+15
+0<
+0$
+#175
+00
+0:
+0*
+12
+05
+1<
+1$
+#180
+10
+1:
+1*
+02
+15
+0<
+0$
+#185
+00
+0:
+0*
+12
+05
+1<
+1$
+#190
+10
+1:
+1*
+02
+15
+0<
+0$
+#195
+00
+0:
+0*
+12
+05
+1<
+1$
