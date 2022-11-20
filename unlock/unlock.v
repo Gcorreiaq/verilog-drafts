@@ -1,4 +1,4 @@
-`include "../basic.vl"
+`include "../basic.v"
 
 module unlock(input [1:0]a, input clk, input reset, output unlock);
 

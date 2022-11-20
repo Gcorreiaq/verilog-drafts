@@ -1,4 +1,4 @@
-`include "../basic.vl"
+`include "../basic.v"
 
 module detect(input a, input clk, input rst, output y);
 

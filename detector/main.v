@@ -1,5 +1,5 @@
 `timescale 1ns / 1ns
-`include "detector.vl"
+`include "detector.v"
 
 module main;
 
