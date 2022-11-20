@@ -6,10 +6,9 @@ module main;
 
 reg [31:0]a;
 reg [31:0]b;
-wire cout;
-wire [31:0]s;
+wire gt;
 
-subtractor uuf(a, b, s);
+comparator_gt uuf(a, b, gt);
 
 initial begin
     $dumpfile("main.vcd");
@@ -19,6 +18,21 @@ initial begin
     #5;
     a = 12381;
     b = 8484;
+    #5;
+    a = 8484;
+    b = 12381;
+    #5;
+    a = -5;
+    b = -6;
+    #5;
+    a = -6;
+    b = -5;
+    #5;
+    a = -6;
+    b = 5;
+    #5;
+    a = 5;
+    b = -6;
     #5;
     #20;
 

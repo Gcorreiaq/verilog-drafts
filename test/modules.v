@@ -63,3 +63,20 @@ module subtractor #(parameter N=32) (input [N-1:0]a, input [N-1:0]b, output [N-1
     adder_la4 #(.N(N)) a0 (a, ~b, 1'b1, cout, s);
 
 endmodule
+
+module comparator #(parameter N=32) (input [N-1:0]a, input [N-1:0]b, output y);
+
+    wire [N-1:0]ab_xor = a ^ b;
+    assign y = ~(&ab_xor);
+
+endmodule
+
+module comparator_gt #(parameter N=32) (input [N-1:0]a, input [N-1:0]b, output gt);
+
+    wire [N-1:0]sub;
+    
+    subtractor #(.N(N)) s0 (a,b,sub);
+
+    assign gt = sub[N-1] ? 1'b0 : 1'b1;
+
+endmodule
