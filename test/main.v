@@ -5,36 +5,16 @@
 module main;
 
 reg [31:0]a;
-reg [31:0]b;
-wire gt;
+reg [4:0]r;
+wire [31:0]y;
 
-comparator_gt uuf(a, b, gt);
+ror32 uuf(a,r,y);
 
 initial begin
     $dumpfile("main.vcd");
     $dumpvars(0, main);
-    a = 0;
-    b = 0;
-    #5;
-    a = 12381;
-    b = 8484;
-    #5;
-    a = 8484;
-    b = 12381;
-    #5;
-    a = -5;
-    b = -6;
-    #5;
-    a = -6;
-    b = -5;
-    #5;
-    a = -6;
-    b = 5;
-    #5;
-    a = 5;
-    b = -6;
-    #5;
+    a = 'b11110100101;
+    r = 1;
     #20;
-
 end
 endmodule
