@@ -5,16 +5,20 @@
 module main;
 
 reg [31:0]a;
-reg [4:0]r;
-wire [31:0]y;
+reg [31:0]b;
+wire [63:0]y;
+wire [63:0]t;
 
-ror32 uuf(a,r,y);
+multiply32 uuf(a,b,y,t);
 
 initial begin
     $dumpfile("main.vcd");
     $dumpvars(0, main);
-    a = 'b11110100101;
-    r = 1;
+    a = 0;
+    b = 0;
+    #20;
+    a = ~a;
+    b = ~b;
     #20;
 end
 endmodule

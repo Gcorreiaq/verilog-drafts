@@ -159,23 +159,41 @@ module ror32 (input [31:0]a, input [4:0]r, output [31:0]y);
     endgenerate
 endmodule
 
-module multiply32 (input [31:0]a, input [31:0]b, output reg [63:0]y);
+module multiply32 (input [31:0]a, input [31:0]b, output [63:0]y,output [63:0]t);
 /* N-bit multiplication produces 2N-bit output */
 
-    initial y = 64'b0;
-    y[0] = a[0] & b[0];
-    wire [31:0]cout;
-    wire [31:0]out;
+    assign y[0] = a[0] & b[0];
+    wire [1024:0]cin;
+    wire [1024:0]f;
 
-    cout[0] = 'b0;
+    assign cin[0] = 1'b0;
+
     genvar i,j;
     generate
         for (i = 1;i < 32;i = i + 1) begin
-            for (j = 0;j < i;j = j + 1) begin
-                fadder f0 (y[i],a[i-j] & b[j],cout[i-1],cout[i],y[i]);
-            end
+            fadder fa (a[i] & b[0],a[i-1] & b[1],cin[i-1],cin[i],f[i-1]);
         end
+
+        fadder fa (a[31] & b[1],1'b0,cin[31],cin[32],f[31]);
+
+        for (i = 0;i < 30;i = i + 1) begin
+            fadder f0 (a[0] & b[i+2],f[(i*32)+1],cin[0],cin[((i+1)*32)+1],f[(i+1)*32]);
+            for (j = 0;j < 30;j = j + 1) begin
+                fadder f0 (a[j+1] & b[i+2],f[(i*32)+j+2],cin[((i+1)*32)+j+1],cin[((i+1)*32)+j+2],f[((i+1)*32)+j+1]);
+            end
+            fadder f1 (a[31] & b[i+2],cin[(i*32)+32],cin[((i+1)*32)+31],cin[((i+1)*32)+32],f[((i+1)*32)+31]);
+        end
+
+        for (i = 1;i < 32;i = i + 1) begin
+            assign y[i] = f[(i-1)*32];
+        end
+        for (i = 0;i < 32;i = i + 1) begin
+            assign y[31+i] = f[(30*32)+i];
+        end
+        assign y[63] = cin[(30*32)+31];
+
     endgenerate
+
 endmodule
 module alu32 (input [31:0]a, input [31:0]b, input [3:0]f, input clk, output reg [31:0]y);
 
