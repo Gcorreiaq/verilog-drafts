@@ -195,6 +195,45 @@ module multiply32 (input [31:0]a, input [31:0]b, output [63:0]y,output [63:0]t);
     endgenerate
 
 endmodule
+
+module divider (input r, input b, input cin, input n, output cout, output r_next, output d);
+
+    fadder fa (r,b,cin,cout,d);
+
+    mux2 mux (r,d,n,r_next);
+
+endmodule
+
+module divide32 (input [31:0]a, input [31:0]b, output [31:0]y, output [31:0]remainder);
+
+    wire [32*32:0]r;
+    wire [32*32:0]cout;
+    wire [31:0]n;
+    wire [32*32:0]d;
+
+
+    genvar i,j;
+    generate
+        for (i = 0;i < 32;i = i + 1) begin
+        assign n[i] = d[(32*i)+31];
+        assign y[31-i] = ~(d[(32*i)+31]);
+    end
+
+    divider div0 (a[31],~b[0],1'b1,n[0],cout[0],r[0],d[0]);
+    for (i = 1;i < 32;i = i + 1) begin
+        divider div1 (1'b0,~b[i],cout[i-1],n[0],cout[i],r[i],d[i]);
+        divider div2 (a[31-i],~b[0],1'b1,n[i],cout[32*i],r[32*i],d[32*i]);
+        for (j = 1;j < 32;j = j + 1) begin
+            divider div3 (r[(32*(i-1))+j-1],~b[j],cout[(32*i)+j-1],n[i],cout[(32*i)+j],r[(32*i)+j],d[(32*i)+j]);
+        end
+    end
+    
+    endgenerate
+
+    assign remainder = r[(31*32)+31:(31*32)];
+
+endmodule
+
 module alu32 (input [31:0]a, input [31:0]b, input [3:0]f, input clk, output reg [31:0]y);
 
     wire [31:0]out0 = a & b;
