@@ -159,7 +159,7 @@ module ror32 (input [31:0]a, input [4:0]r, output [31:0]y);
     endgenerate
 endmodule
 
-module multiply32 (input [31:0]a, input [31:0]b, output [63:0]y,output [63:0]t);
+module multiply32 (input [31:0]a, input [31:0]b, output [63:0]y);
 /* N-bit multiplication produces 2N-bit output */
 
     assign y[0] = a[0] & b[0];
@@ -172,6 +172,8 @@ module multiply32 (input [31:0]a, input [31:0]b, output [63:0]y,output [63:0]t);
     generate
         for (i = 1;i < 32;i = i + 1) begin
             fadder fa (a[i] & b[0],a[i-1] & b[1],cin[i-1],cin[i],f[i-1]);
+            assign y[i] = f[(i-1)*32];
+            assign y[31+i] = f[(30*32)+i];
         end
 
         fadder fa (a[31] & b[1],1'b0,cin[31],cin[32],f[31]);
@@ -184,12 +186,6 @@ module multiply32 (input [31:0]a, input [31:0]b, output [63:0]y,output [63:0]t);
             fadder f1 (a[31] & b[i+2],cin[(i*32)+32],cin[((i+1)*32)+31],cin[((i+1)*32)+32],f[((i+1)*32)+31]);
         end
 
-        for (i = 1;i < 32;i = i + 1) begin
-            assign y[i] = f[(i-1)*32];
-        end
-        for (i = 0;i < 32;i = i + 1) begin
-            assign y[31+i] = f[(30*32)+i];
-        end
         assign y[63] = cin[(30*32)+31];
 
     endgenerate
@@ -231,6 +227,41 @@ module divide32 (input [31:0]a, input [31:0]b, output [31:0]y, output [31:0]rema
     endgenerate
 
     assign remainder = r[(31*32)+31:(31*32)];
+
+endmodule
+
+module counter (input clk, input rst, output [31:0]n);
+
+    wire [31:0]q;
+    wire [31:0]s;
+
+    fadder_N fa ('b1,q,s);
+    
+    genvar i;
+    generate
+        for (i = 0;i < 32;i = i + 1) begin
+            flip_flop ff (s[i],clk,rst,q[i]);
+        end
+    endgenerate
+
+    assign n = q;
+
+endmodule
+
+module shift_register (input [7:0]d, input sin, input load, input clk, input rst, output sout, output [7:0]q);
+
+    wire [7:0]mux_q;
+
+    mux2 #(.N(8)) mux (d,{q[6:0],sin},load,mux_q);
+    
+    genvar i;
+    generate
+        for (i = 0;i < 8;i = i + 1) begin
+            flip_flop ff (mux_q[i],clk,rst,q[i]);
+        end
+    endgenerate
+
+    assign sout = q[7];
 
 endmodule
 

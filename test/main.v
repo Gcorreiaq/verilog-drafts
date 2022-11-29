@@ -6,16 +6,18 @@ module main;
 
 reg [31:0]a;
 reg [31:0]b;
-wire [31:0]y;
-wire [31:0]r;
+wire [63:0]y;
 
-divide32 uuf(a,b,y,r);
+
+multiply32 uuf(a,b,y);
 
 initial begin
     $dumpfile("main.vcd");
     $dumpvars(0, main);
-    a = 16;
-    b = 3;
+
+    a = 165555;
+    b = 265555;
     #20;
+    $finish;
 end
 endmodule
